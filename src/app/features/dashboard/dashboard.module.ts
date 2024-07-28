@@ -5,24 +5,23 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { StudentsModule } from './students/students.module';
 import {MatListModule} from '@angular/material/list';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
   ],
   exports: [ DashboardComponent ],
   imports: [
-    StudentsModule,
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    RouterModule
   ]
 })
 export class DashboardModule { 

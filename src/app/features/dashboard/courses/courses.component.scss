@@ -1,0 +1,45 @@
+.centered-table {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+.tabla-color {
+    background-color: black;
+    color: #343dff;
+}
+.bg-blue {
+    background-color: #bec2ff;
+    color: #0001ac;
+    font-family: Roboto, sans-serif;
+}
+.border-radius {
+    border-top-right-radius: 25%;
+    border-top-left-radius: 25%;
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-style {
+    margin-right: 10px;
+  }
+  
+  .input-style {
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 16px;
+    background-color: #bec2ff;
+    color: #0001ac;
+    display: flex;
+    align-items: center;
+    height: 24px;
+  }
+  
+  .input-style::placeholder {
+    color: #0001ac;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+  }

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>
+    {{ editingCourses ? 'Editando el curso ' + editingCourses.name : 'Creando curso' }}
+  </h2>
+  
+  <mat-dialog-content>
+    <form [formGroup]="alumnoForm">
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="name" matInput>
+        <mat-error *ngIf="nameControl.hasError('required')">El campo es requerido</mat-error>
+        <mat-error *ngIf="nameControl.hasError('pattern')">No se pueden poner números en el nombre</mat-error>
+        <mat-error *ngIf="nameControl.hasError('minlength')">El nombre debe tener al menos {{ nameControl.getError('minlength').requiredLength }} caracteres</mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field class="w-full">
+        <mat-label>Periodo de cursada</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Fecha de inicio">
+          <input matEndDate formControlName="endDate" placeholder="Fecha final">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error *ngIf="alumnoForm.get('startDate')?.hasError('required')">El campo es requerido</mat-error>
+        <mat-error *ngIf="alumnoForm.get('endDate')?.hasError('required')">El campo es requerido</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <button mat-dialog-close mat-button>Cancelar</button>
+    <button (click)="onSubmit()" mat-button>Guardar</button>
+  </mat-dialog-actions>

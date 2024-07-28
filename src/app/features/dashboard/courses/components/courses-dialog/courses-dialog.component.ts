@@ -1,21 +1,21 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
-import { Students } from '../../models';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Courses } from '../../models';
 
 @Component({
-  selector: 'app-student-dialog',
-  templateUrl: './student-dialog.component.html',
-  styleUrls: ['./student-dialog.component.scss']
+  selector: 'app-courses-dialog',
+  templateUrl: './courses-dialog.component.html',
+  styleUrl: './courses-dialog.component.scss'
 })
-export class StudentDialogComponent {
+export class CoursesDialogComponent {
   alumnoForm: FormGroup;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+
   constructor(private fb: FormBuilder,
-              private matDialogRef: MatDialogRef<StudentDialogComponent>,
+              private matDialogRef: MatDialogRef<CoursesDialogComponent>,
               private snackBar: MatSnackBar,
-              @Inject(MAT_DIALOG_DATA) public editingStudents?: Students) {
+              @Inject(MAT_DIALOG_DATA) public editingCourses?: Courses) {
     this.alumnoForm = this.fb.group({
       name: [null, [
         Validators.required,
@@ -31,8 +31,8 @@ export class StudentDialogComponent {
       endDate: [null, Validators.required],
     });
 
-    if (this.editingStudents) {
-      this.alumnoForm.patchValue(this.editingStudents);
+    if (this.editingCourses) {
+      this.alumnoForm.patchValue(this.editingCourses);
     }
   }
   minLengthValidator(minLength: number): ValidatorFn {
@@ -56,13 +56,11 @@ export class StudentDialogComponent {
     if (this.alumnoForm.valid) {
       this.matDialogRef.close(this.alumnoForm.value);
       this.snackBar.open('Formulario enviado correctamente', 'Cerrar', {
-        horizontalPosition: this.horizontalPosition,
-        duration: 4000,
+        duration: 3000,
       });
     } else {
       this.snackBar.open('El formulario es inválido', 'Cerrar', {
-        horizontalPosition: this.horizontalPosition,
-        duration: 4000,
+        duration: 3000,
       });
     }
   }
