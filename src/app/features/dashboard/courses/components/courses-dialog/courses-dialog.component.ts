@@ -10,19 +10,14 @@ import { Courses } from '../../models';
   styleUrl: './courses-dialog.component.scss'
 })
 export class CoursesDialogComponent {
-  alumnoForm: FormGroup;
+  courseForm: FormGroup;
 
   constructor(private fb: FormBuilder,
               private matDialogRef: MatDialogRef<CoursesDialogComponent>,
               private snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public editingCourses?: Courses) {
-    this.alumnoForm = this.fb.group({
+    this.courseForm = this.fb.group({
       name: [null, [
-        Validators.required,
-        Validators.pattern('^[a-zA-Z]+$'),
-        this.minLengthValidator(3)
-      ]],
-      lastName: [null, [
         Validators.required,
         Validators.pattern('^[a-zA-Z]+$'),
         this.minLengthValidator(3)
@@ -32,7 +27,7 @@ export class CoursesDialogComponent {
     });
 
     if (this.editingCourses) {
-      this.alumnoForm.patchValue(this.editingCourses);
+      this.courseForm.patchValue(this.editingCourses);
     }
   }
   minLengthValidator(minLength: number): ValidatorFn {
@@ -45,16 +40,16 @@ export class CoursesDialogComponent {
   }
 
   get nameControl(): AbstractControl {
-    return this.alumnoForm.get('name')!;
+    return this.courseForm.get('name')!;
   }
 
   get lastNameControl(): AbstractControl {
-    return this.alumnoForm.get('lastName')!;
+    return this.courseForm.get('lastName')!;
   }
 
   onSubmit(): void {
-    if (this.alumnoForm.valid) {
-      this.matDialogRef.close(this.alumnoForm.value);
+    if (this.courseForm.valid) {
+      this.matDialogRef.close(this.courseForm.value);
       this.snackBar.open('Formulario enviado correctamente', 'Cerrar', {
         duration: 3000,
       });

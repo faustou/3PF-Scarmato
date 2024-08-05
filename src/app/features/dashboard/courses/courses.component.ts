@@ -6,6 +6,7 @@ import { generateId } from '../../../shared/utils';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { CoursesService } from '../../../core/services/courses.service';
+import { CoursesDialogComponent } from './components/courses-dialog/courses-dialog.component';
 
 @Component({
   selector: 'app-courses',
@@ -14,7 +15,7 @@ import { CoursesService } from '../../../core/services/courses.service';
 })
 export class CoursesComponent implements OnInit {
 
-  nombreAlumno = '';
+  nameCourse = '';
   displayedColumns: string[] = ['id', 'name', 'startDate', 'endDate', 'actions', 'classes'];
   dataSource: MatTableDataSource<Courses>;
   filteredDataSource: MatTableDataSource<Courses>;
@@ -38,11 +39,11 @@ export class CoursesComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.matDialog.open(StudentDialogComponent).afterClosed().subscribe({
+    this.matDialog.open(CoursesDialogComponent).afterClosed().subscribe({
       next: (value) => {
         if (value) {
           value['id'] = generateId(5);
-          this.nombreAlumno = value.name;
+          this.nameCourse = value.name;
           this.dataSource.data = [...this.dataSource.data, value];
           this.applyFilter({ target: { value: '' } } as unknown as Event);
           this.snackBar.open('Se creo un alumno nuevo', 'Close', { duration: 3000, horizontalPosition: this.horizontalPosition, });
@@ -52,7 +53,7 @@ export class CoursesComponent implements OnInit {
   }
 
   editCourses(editingCourses: Courses): void {
-    this.matDialog.open(StudentDialogComponent, { data: editingCourses }).afterClosed().subscribe({
+    this.matDialog.open(CoursesDialogComponent, { data: editingCourses }).afterClosed().subscribe({
       next: (value) => {
         if (value) {
           this.dataSource.data = this.dataSource.data.map((el) => el.id === editingCourses.id ? { ...value, id: editingCourses.id } : el);

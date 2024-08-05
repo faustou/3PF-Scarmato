@@ -3,7 +3,7 @@
   </h2>
   
   <mat-dialog-content>
-    <form [formGroup]="alumnoForm">
+    <form [formGroup]="courseForm">
       <mat-form-field class="w-full">
         <mat-label>Nombre</mat-label>
         <input formControlName="name" matInput>
@@ -23,8 +23,8 @@
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-        <mat-error *ngIf="alumnoForm.get('startDate')?.hasError('required')">El campo es requerido</mat-error>
-        <mat-error *ngIf="alumnoForm.get('endDate')?.hasError('required')">El campo es requerido</mat-error>
+        <mat-error *ngIf="courseForm.get('startDate')?.hasError('required')">El campo es requerido</mat-error>
+        <mat-error *ngIf="courseForm.get('endDate')?.hasError('required')">El campo es requerido</mat-error>
       </mat-form-field>
     </form>
   </mat-dialog-content>

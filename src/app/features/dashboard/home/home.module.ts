@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from '../../../app-routing.module';
+import { HomeRoutingModule } from './home-routing.module';
 
 
 
@@ -14,8 +14,7 @@ import { AppRoutingModule } from '../../../app-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule,
-    AppRoutingModule
+    HomeRoutingModule
   ],
   exports: [
     HomeComponent

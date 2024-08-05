@@ -4,6 +4,7 @@ import { StudentsComponent } from './students.component';
 import { StudentDialogComponent } from './components/student-dialog/student-dialog.component'; 
 import { SharedModule } from '../../../shared/shared.module';
 import { ResaltadoDirective } from '../../../shared/directives/resaltado.directive';
+import { StudentsRoutingModule } from './students-routing.module';
 
 
 
@@ -17,6 +18,7 @@ import { ResaltadoDirective } from '../../../shared/directives/resaltado.directi
   imports: [
     SharedModule,
     CommonModule,
+    StudentsRoutingModule
   ]
 })
 export class StudentsModule { }

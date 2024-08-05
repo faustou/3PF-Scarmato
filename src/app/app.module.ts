@@ -21,10 +21,8 @@ import { CoursesModule } from './features/dashboard/courses/courses.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DashboardModule,
     FormsModule,
     ReactiveFormsModule,
-    LoginModule,
   ],
   providers: [
     provideAnimationsAsync(),
