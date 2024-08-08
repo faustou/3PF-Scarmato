@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClassesComponent } from './courses/components/classes/classes.component';
-import { StudentsComponent } from './students/students.component';
-import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   // Ya sabemos que el path actual es /dashboard
@@ -14,7 +11,15 @@ const routes: Routes = [
   {
     // /dashboard/courses
     path: 'courses',
-    component: CoursesComponent,
+    loadChildren: () =>
+      import('./courses/courses.module').then((m) => m.CoursesModule),
+  },
+  {
+    // /dashboard/students
+    path: 'students',
+    // canActivate: [adminGuard],
+    loadChildren: () =>
+      import('./students/students.module').then((m) => m.StudentsModule),
   },
   {
     path: '**', // Cualquier ruta que no coincida con las anteriores (basicmanete es un default)

@@ -1,0 +1,55 @@
+{
+  "courses": [
+    {
+      "name": "Javascriptasdadasd",
+      "startDate": "2024-08-02T03:00:00.000Z",
+      "endDate": "2024-08-16T03:00:00.000Z",
+      "id": "40u4r"
+    },
+    {
+      "id": "Gr8ME",
+      "name": "React",
+      "endDate": "new Date()",
+      "startDate": "new Date()",
+      "classes": [
+        {
+          "classNumber": "1",
+          "title": "Introduction to React",
+          "date": "new Date()",
+          "live": "https://zoom.us/es/signin#/login"
+        },
+        {
+          "classNumber": "2",
+          "title": "React Components and Props",
+          "date": "new Date()",
+          "live": "https://zoom.us/es/signin#/login"
+        },
+        {
+          "classNumber": "3",
+          "title": "State and Lifecycle in React",
+          "date": "new Date()",
+          "live": "https://zoom.us/es/signin#/login"
+        },
+        {
+          "classNumber": "4",
+          "title": "Handling Events in React",
+          "date": "new Date()",
+          "live": "https://zoom.us/es/signin#/login"
+        },
+        {
+          "classNumber": "5",
+          "title": "Conditional Rendering in React",
+          "date": "new Date()",
+          "live": "https://zoom.us/es/signin#/login"
+        }
+      ]
+    },
+    {
+      "id": "ZIUsr",
+      "name": "asdasd",
+      "startDate": "2024-08-02T03:00:00.000Z",
+      "endDate": "2024-08-09T03:00:00.000Z"
+    }
+  ],
+  "studenst": []
+}

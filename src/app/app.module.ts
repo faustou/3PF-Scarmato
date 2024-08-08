@@ -12,6 +12,7 @@ import { AuthMockService } from './core/services/auth-mock.service';
 import { HomeModule } from './features/dashboard/home/home.module';
 import { StudentsModule } from './features/dashboard/students/students.module';
 import { CoursesModule } from './features/dashboard/courses/courses.module';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CoursesModule } from './features/dashboard/courses/courses.module';
   providers: [
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
+    provideHttpClient(withFetch()),
     AuthMockService
   ],
   bootstrap: [AppComponent]

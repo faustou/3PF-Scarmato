@@ -4,7 +4,7 @@
       <a mat-list-item routerLink="home" routerLinkActive #coursesLink="routerLinkActive" [activated]="coursesLink.isActive">Home</a>
       <a mat-list-item routerLink="courses" routerLinkActive #coursesLink="routerLinkActive" [activated]="coursesLink.isActive">Courses</a>
       <a mat-list-item routerLink="students" routerLinkActive #studentsLink="routerLinkActive" [activated]="studentsLink.isActive">Students</a>
-      <a mat-list-item routerLink="/auth">Cerrar sesion</a>
+      <a mat-list-item (click)="logout()">Cerrar sesion</a>
     </mat-nav-list>
   </mat-drawer>
 
@@ -13,7 +13,7 @@
       <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>CoderCuve</span>
+      <span>CoderCuve | {{ nombreEntorno }} </span>
       <span class="example-spacer"></span>
       <mat-icon routerLink="/auth">logout</mat-icon>
     </mat-toolbar>

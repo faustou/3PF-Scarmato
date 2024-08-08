@@ -44,9 +44,22 @@ export class CoursesComponent implements OnInit {
         if (value) {
           value['id'] = generateId(5);
           this.nameCourse = value.name;
-          this.dataSource.data = [...this.dataSource.data, value];
-          this.applyFilter({ target: { value: '' } } as unknown as Event);
-          this.snackBar.open('Se creo un alumno nuevo', 'Close', { duration: 3000, horizontalPosition: this.horizontalPosition, });
+          this.coursesService.createCourse(value).subscribe({
+            next: (newCourse) => {
+              this.dataSource.data = [...this.dataSource.data, newCourse];
+              this.applyFilter({ target: { value: '' } } as unknown as Event);
+              this.snackBar.open('Se creó un curso nuevo', 'Close', { 
+                duration: 3000, 
+                horizontalPosition: this.horizontalPosition 
+              });
+            },
+            error: () => {
+              this.snackBar.open('Error al crear el curso', 'Close', {
+                duration: 3000,
+                horizontalPosition: this.horizontalPosition
+              });
+            }
+          });
         }
       }
     });
@@ -56,18 +69,44 @@ export class CoursesComponent implements OnInit {
     this.matDialog.open(CoursesDialogComponent, { data: editingCourses }).afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          this.dataSource.data = this.dataSource.data.map((el) => el.id === editingCourses.id ? { ...value, id: editingCourses.id } : el);
-          this.applyFilter({ target: { value: '' } } as unknown as Event);
-          this.snackBar.open('Se edito el alumno', 'Close', { duration: 3000, horizontalPosition: this.horizontalPosition, });
+          this.coursesService.editCoursesByID(editingCourses.id, value).subscribe({
+            next: (updatedCourse: Courses) => {
+              this.dataSource.data = this.dataSource.data.map((el) => el.id === editingCourses.id ? updatedCourse : el);
+              this.applyFilter({ target: { value: '' } } as unknown as Event);
+              this.snackBar.open('Se editó el curso', 'Close', {
+                duration: 3000,
+                horizontalPosition: this.horizontalPosition,
+              });
+            },
+            error: () => {
+              this.snackBar.open('Error al editar el curso', 'Close', {
+                duration: 3000,
+                horizontalPosition: this.horizontalPosition
+              });
+            }
+          });
         }
       }
     });
   }
 
   deleteCoursesById(id: string): void {
-    this.dataSource.data = this.dataSource.data.filter((el) => el.id !== id);
-    this.applyFilter({ target: { value: '' } } as unknown as Event);
-    this.snackBar.open('Se elimino el alumno', 'Close', { duration: 3000, horizontalPosition: this.horizontalPosition, });
+    this.coursesService.deleteCourseByID(id).subscribe({
+      next: () => {
+        this.dataSource.data = this.dataSource.data.filter((el) => el.id !== id);
+        this.applyFilter({ target: { value: '' } } as unknown as Event);
+        this.snackBar.open('Se eliminó el curso', 'Close', { 
+          duration: 3000, 
+          horizontalPosition: this.horizontalPosition 
+        });
+      },
+      error: () => {
+        this.snackBar.open('Error al eliminar el curso', 'Close', {
+          duration: 3000,
+          horizontalPosition: this.horizontalPosition
+        });
+      }
+    });
   }
 
   applyFilter(event: Event): void {

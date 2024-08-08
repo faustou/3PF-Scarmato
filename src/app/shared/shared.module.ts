@@ -40,8 +40,6 @@ import { AppRoutingModule } from '../app-routing.module';
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
-    RouterModule,
-    AppRoutingModule
   ],
 })
 export class SharedModule { }

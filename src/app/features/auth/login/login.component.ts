@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { AuthMockService } from '../../../core/services/auth-mock.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   constructor(
-    private authService: AuthMockService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar
     //@Inject(APP_CONFIG) private appConfig: any
@@ -31,8 +32,8 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       alert('El formulario no es valido');
     } else {
+
       this.authService.login();
-      this.snackBar.open('Se creo un alumno nuevo', 'Close', { duration: 5000, horizontalPosition: this.horizontalPosition, });
     }
   }
 }

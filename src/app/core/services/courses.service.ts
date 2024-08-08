@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Courses } from "../../features/dashboard/courses/models";
 import { map, Observable, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
 
  @Injectable({
     providedIn: 'root',
@@ -148,11 +150,26 @@ import { map, Observable, of } from "rxjs";
          },
     ];
 
+    constructor(private httpClient: HttpClient) {}
+
     getCourses(): Observable<Courses[]> {
-        return of (this.DATABASE);
+        // return of (this.DATABASE);
+        return this.httpClient.get<Courses[]>(environment.apiUrl + '/courses')
     }
+
+    createCourse(course: Courses): Observable<Courses> {
+        return this.httpClient.post<Courses>(environment.apiUrl + '/courses', course);
+      }
 
     getCoursesByID(id:string): Observable<Courses | undefined> {
         return this.getCourses().pipe(map((allCourses)=> allCourses.find((el) => el.id === id)))
+    }
+    
+    editCoursesByID(id: string, update: Partial<Courses>): Observable<Courses> {
+        return this.httpClient.put<Courses>(`${environment.apiUrl}/courses/${id}`, update);
+    }
+    
+    deleteCourseByID(id: string): Observable<void> {
+        return this.httpClient.delete<void>(`${environment.apiUrl}/courses/${id}`);
     }
  }
