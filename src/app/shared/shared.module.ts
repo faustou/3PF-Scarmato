@@ -15,6 +15,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -40,6 +41,7 @@ import { AppRoutingModule } from '../app-routing.module';
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
+    BrowserAnimationsModule
   ],
 })
 export class SharedModule { }

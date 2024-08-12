@@ -29,6 +29,18 @@ export class AuthService {
     this.router.navigate(['auth', 'login'])
   }
 
+  verifyUser(): Observable<User | null> {
+    const token = localStorage.getItem('token')
+    if (token) {
+        this._authUser.next({
+            email: 'FAKE@GMAIL.COM',
+            password: '123456',
+            role: 'EMPLOYEE'
+        })
+    }
+    return this.authUser
+  }
+
   verifyToken(): Observable<boolean> {
     const token = localStorage.getItem('token')
 
